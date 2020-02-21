@@ -1,0 +1,27 @@
+<h2><%= @cocktail.name %></h2>
+
+
+<% if @cocktail.doses.size > 0 %>
+  <% @cocktail.doses.each do |dose| %>
+  <li>
+    <%= dose.ingredient.name %>
+    <%= dose.description %>
+    <%= link_to "delete", dose_path(dose), method: :delete, data: { confirm: 'Are you sure?' } %>
+  </li>
+  <% end %>
+<% else %>
+  <%= "No doses yet, add one!" %>
+<% end %>
+
+<%= simple_form_for([@cocktail, @dose]) do |f| %>
+  <li>
+    <%= f.input :ingredient_id, collection: Ingredient.all %>
+    <%= f.input :description %>
+  </li>
+  <%= f.submit "Add new dose", class: "btn btn-primary" %>
+<% end %>
+
+<%= link_to("Return to index", "/cocktails") %>
+<form action="cocktails/3/doses" method="post">
+
+</form>
