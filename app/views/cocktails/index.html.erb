@@ -1,9 +1,26 @@
-<h1>My list of Cocktails</h1>
-<ul>
-<% @cocktails.each do |cocktail| %>
-  <li> <%= link_to cocktail.name, cocktail_path(cocktail)%>
-  <%= link_to "delete", cocktail_path(cocktail),  data: {:confirm => 'Are you sure?'}, :method => :delete %></li>
-<% end %>
-</ul>
-<%= link_to "Create a new cocktail", cocktails_new_path %>
+<div class="main-banner mb-5" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path('cocktails_image.jpeg') %>);">
+  <div class="banner-text">
+  <h1 class="mb-5">My list of Cocktails</h1>
+  <h2> Here you will find all the recipes you need!</h2>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <% @cocktails.each do |cocktail| %>
+    <div class="col-md-4">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+        <%= link_to cocktail.name, cocktail_path(cocktail)%>
+        <%= link_to cocktail_path(cocktail),  data: {:confirm => 'Are you sure?'}, :method => :delete do %>
+          <i class="fas fa-trash"></i>
+          <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+  <%= link_to "Create a new cocktail", cocktails_new_path, :class => "btn btn-primary" %>
+</div>
+
+
 
